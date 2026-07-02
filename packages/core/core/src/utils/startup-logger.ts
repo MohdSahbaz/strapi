@@ -42,7 +42,7 @@ export const createStartupLogger = (app: Core.Strapi) => {
           return 'Community';
         }
 
-        return app.ee.plan?.toLowerCase().includes('growth') ? 'Growth' : 'Enterprise';
+        return app.ee.planPriceId?.toLowerCase().includes('growth') ? 'Growth' : 'Enterprise';
       };
 
       infoTable.push(

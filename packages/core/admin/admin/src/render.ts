@@ -73,10 +73,10 @@ const renderAdmin = async (
     isEE: boolean;
     isTrial: boolean;
     /**
-     * The licensed plan name, sent by the license registry (EE only).
+     * The licensed plan price id, sent by the license registry (EE only).
      * Used to distinguish the Growth plan from other Enterprise plans.
      */
-    plan?: string;
+    planPriceId?: string;
     features: {
       name: string;
     }[];
@@ -88,7 +88,7 @@ const renderAdmin = async (
   try {
     const {
       data: {
-        data: { isEE, isTrial, features, flags, ai, plan },
+        data: { isEE, isTrial, features, flags, ai, planPriceId },
       },
     } = await get<{ data: ProjectType }>('/admin/project-type');
 
@@ -100,7 +100,7 @@ const renderAdmin = async (
       isEnabled: (featureName: string | undefined) =>
         features.some((feature) => feature.name === featureName),
     };
-    window.strapi.projectType = getProjectType({ isEE, plan });
+    window.strapi.projectType = getProjectType({ isEE, planPriceId });
     // eslint-disable-next-line
     // @ts-ignore – there's pollution from the global scope of Node. Cannot use @ts-expect-error because of build:code and build:types context collision.
     window.strapi.ai = ai;

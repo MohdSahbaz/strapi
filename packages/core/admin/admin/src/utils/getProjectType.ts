@@ -6,15 +6,21 @@ type ProjectType = 'Community' | 'Growth' | 'Enterprise';
  *
  * The label is intentionally limited to three values:
  * - `Community`  when there is no license (Community Edition).
- * - `Growth`     when the licensed plan name contains "growth".
+ * - `Growth`     when the licensed plan price id contains "growth".
  * - `Enterprise` for any other licensed plan.
  */
-const getProjectType = ({ isEE, plan }: { isEE: boolean; plan?: string }): ProjectType => {
+const getProjectType = ({
+  isEE,
+  planPriceId,
+}: {
+  isEE: boolean;
+  planPriceId?: string;
+}): ProjectType => {
   if (!isEE) {
     return 'Community';
   }
 
-  if (plan?.toLowerCase().includes('growth')) {
+  if (planPriceId?.toLowerCase().includes('growth')) {
     return 'Growth';
   }
 
