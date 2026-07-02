@@ -7,6 +7,7 @@ import { generateInstallId } from '@strapi/utils';
 
 interface LicenseInfo {
   type: 'bronze' | 'silver' | 'gold';
+  plan?: string;
   isTrial: boolean;
   expireAt?: string;
   seats?: number;

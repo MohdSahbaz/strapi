@@ -21,6 +21,7 @@ interface EE {
     expireAt?: string;
     seats?: number;
     type?: string;
+    plan?: string;
     isTrial: boolean;
     subscriptionId?: string;
     planPriceId?: string;
@@ -286,6 +287,10 @@ export default Object.freeze({
 
   get type() {
     return ee.licenseInfo.type;
+  },
+
+  get plan() {
+    return ee.licenseInfo.plan;
   },
 
   get isTrial() {
